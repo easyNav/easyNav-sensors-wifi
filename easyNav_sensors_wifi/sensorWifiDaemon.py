@@ -22,8 +22,9 @@ from sensorWifi import SensorWifi
 
 class SensorWifiDaemon:
 
-    def __init__(self, args=None):
+    def __init__(self, interval=0.5):
         self._sw = SensorWifi('wlan0')
+        self.interval = interval
         pass
 
 
@@ -36,7 +37,7 @@ class SensorWifiDaemon:
         def runThread():
             while(self._active):
                 self._tick()
-                time.sleep(0.2)
+                time.sleep(self.interval)
 
         self._threadListen = threading.Thread(target=runThread)
         self._threadListen.start()

@@ -55,7 +55,7 @@ class SensorWifi:
 
         ## Do actual stuff here #####################################
 
-        proc = subprocess.Popen(['/sbin/iwlist', 'wlan0', 'scan'],
+        proc = subprocess.Popen(['sudo', '/sbin/iwlist', 'wlan0', 'scan'],
                                 stdout=subprocess.PIPE)
         stdout, stderr =  proc.communicate()
 
