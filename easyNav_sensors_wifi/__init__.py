@@ -9,3 +9,5 @@
 # Copyright (c) 2014 Joel Tong me@joeltong.org
 
 from easyNav_sensors_wifi.version import __version__
+from easyNav_sensors_wifi.sensorWifi import SensorWifi
+from easyNav_sensors_wifi.sensorWifiDaemon import SensorWifiDaemon

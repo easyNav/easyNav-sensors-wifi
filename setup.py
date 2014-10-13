@@ -48,7 +48,7 @@ wifi sniffer to expose iwlist wifi info or python
         'Operating System :: OS Independent',
     ],
     packages=find_packages(),
-    include_package_data=False,
+    include_package_data=True,
     install_requires=[
         # add your dependencies here
         # remember to use 'package-name>=x.y.z,<x.y+1.0' notation (this way you get bugfixes)
@@ -59,7 +59,7 @@ wifi sniffer to expose iwlist wifi info or python
     entry_points={
         'console_scripts': [
             # add cli scripts here in this form:
-            # 'easyNav-sensors-wifi=easyNav_sensors_wifi.cli:main',
+            'easyNav-sensors-wifi=easyNav_sensors_wifi.cli:main',
         ],
     },
 )
