@@ -22,9 +22,10 @@ from sensorWifi import SensorWifi
 
 class SensorWifiDaemon:
 
-    def __init__(self, interval=0.5):
-        self._sw = SensorWifi('wlan0')
+    def __init__(self, interval=0.5, interface='wlan0'):
         self.interval = interval
+        self.interface = interface
+        self._sw = SensorWifi(interface)
         pass
 
 
@@ -62,6 +63,13 @@ class SensorWifiDaemon:
     def getStength(self):
         result = None 
         return result
+
+
+    def updateConfig(self, interval=0.5, interface='wlan0'):
+        self.interval = interval 
+        self.interface = self._sw.interface = interface
+        logging.info('Set interface=%s interval=%s' % (interface, interval))
+
 
 
 

@@ -16,7 +16,7 @@ import re
 
 
 class SensorWifi:
-    def __init__(self, interface):
+    def __init__(self, interface='wlan0'):
         """ Creates new SensorWifi instance, scanning the specified interface. 
         """
         self.interface = interface
@@ -55,7 +55,7 @@ class SensorWifi:
 
         ## Do actual stuff here #####################################
 
-        proc = subprocess.Popen(['sudo', '/sbin/iwlist', 'wlan0', 'scan'],
+        proc = subprocess.Popen(['sudo', '/sbin/iwlist', self.interface, 'scan'],
                                 stdout=subprocess.PIPE)
         stdout, stderr =  proc.communicate()
 
