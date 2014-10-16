@@ -36,9 +36,12 @@ class SensorWifiDaemon:
 
         ## Run tick thread
         def runThread():
+            refTime = time.time()
             while(self._active):
-                self._tick()
-                time.sleep(self.interval)
+                ## If time elapsed more than 1s, tick.
+                if ((time.time() - refTime) > self.interval):
+                    refTime = time.time()
+                    self._tick()
 
         self._threadListen = threading.Thread(target=runThread)
         self._threadListen.start()

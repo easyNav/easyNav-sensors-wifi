@@ -12,6 +12,9 @@ import logging
 import subprocess
 import re
 
+from baseconv import BaseConverter
+base16 = BaseConverter('0123456789abcdef')
+
 
 
 
@@ -34,8 +37,11 @@ class SensorWifi:
         def handle_new_network(line, result, networks):
             # group(1) is the mac address
             networks.append({})
-            ## TODO: this is fix to delete LSB 2 bytes.  Move to option later to get full 32 bytes.
-            networks[-1]['Address'] = result.group(1)[:-3]
+            ## TODO: this is fix to delete LS 4 bits.  Move to option later to get full 32 bytes.
+            curAddr = result.group(1) # Get 32-byte address
+            lsb = int(curAddr[-1],16) # get LSB
+            lsbModified = lsb & (~16) # AND with bitmask 1111 0000
+            networks[-1]['Address'] = curAddr[:-1] + base16.encode(lsbModified) # update with modified address.
 
         def handle_essid(line, result, networks):
             # group(1) is the essid name
